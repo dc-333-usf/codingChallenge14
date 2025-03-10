@@ -21,6 +21,17 @@ function createTicket(name, description, priority) {
     allTickets.push(ticket);
     ticketContainer.appendChild(ticket);
 
+    //Task 4: implementing ticket resolution with event bubbling.
+    const resolveButton = ticket.querySelector(".resolveButton");
+    resolveButton.addEventListener("click", (event) => {
+        ticketContainer.removeChild(ticket);
+        event.stopPropagation();
+        console.log("Resolve button clicked");
+    });
+
+    ticketContainer.addEventListener("click", () => {
+        console.log("Parent container clicked");
+    });
 }
 
 createTicket("Jake", "My computer broke", "High");
